@@ -9,12 +9,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.imerchantech.michaeljackson.R;
 import com.imerchantech.michaeljackson.databinding.ActivitySongBinding;
+import com.imerchantech.michaeljackson.song_detail.view.SongDetailsActivity;
 import com.imerchantech.michaeljackson.songs_list.contract.SongsContract;
 import com.imerchantech.michaeljackson.songs_list.entity.SongsEntity;
 import com.imerchantech.michaeljackson.songs_list.presenter.SongsPresenter;
@@ -29,6 +30,7 @@ public class SongsActivity extends AppCompatActivity implements SongsContract.Vi
     private SongsPresenter presenter;
     SongsAdapter songsAdapter;
     private static final int REQUEST = 112;
+    List<SongsEntity> songsEntityList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,13 @@ public class SongsActivity extends AppCompatActivity implements SongsContract.Vi
         binding = DataBindingUtil.setContentView(this, R.layout.activity_song);
         context = this;
         askPermission();
+        binding.lvSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                presenter.onSongClick(position);
+            }
+        });
     }
 
     @Override
@@ -86,8 +95,14 @@ public class SongsActivity extends AppCompatActivity implements SongsContract.Vi
 
     @Override
     public void setSongsList(List<SongsEntity> songsEntityList) {
+        this.songsEntityList=songsEntityList;
         songsAdapter = new SongsAdapter(this, songsEntityList);
         binding.lvSongs.setAdapter(songsAdapter);
+    }
+
+    @Override
+    public void showSongDetails(SongsEntity songsEntity) {
+        SongDetailsActivity.start(context, songsEntity);
     }
 
 

@@ -18,6 +18,8 @@ public interface SongsContract {
 
         void setSongsList(List<SongsEntity> so);
 
+        void showSongDetails(SongsEntity superHero);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -25,10 +27,14 @@ public interface SongsContract {
 
         void setView(SongsContract.View view);
 
+        void onSongClick(int position);
+
     }
 
     interface Model {
         void fetchSongs(LoadCallback<List<SongsEntity>> loadCallback);
+
+        SongsEntity getSongDetailsAtPosition(int position);
     }
 
 

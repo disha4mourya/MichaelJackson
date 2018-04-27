@@ -51,6 +51,14 @@ public class SongsPresenter implements SongsContract.Presenter {
 
     }
 
+    @Override
+    public void onSongClick(int position) {
+        SongsEntity songsEntity = model.getSongDetailsAtPosition(position);
+        if (songsEntity != null) {
+            view.showSongDetails(songsEntity);
+        }
+    }
+
 
     @Override
     public void create() {

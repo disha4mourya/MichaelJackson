@@ -4,4 +4,5 @@
     <string name="error">Error</string>
     <string name="right">Right</string>
     <string name="artist_name">Artist Name</string>
+    <string name="track_name">Track Name</string>
 </resources>

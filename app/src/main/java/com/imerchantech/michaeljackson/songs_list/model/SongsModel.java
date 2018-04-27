@@ -42,6 +42,12 @@ public class SongsModel implements SongsContract.Model {
 
     }
 
+    @Override
+    public SongsEntity getSongDetailsAtPosition(int position) {
+        List<SongsEntity> superHeroes = songsEntityList;
+        return superHeroes != null ? superHeroes.get(position) : null;
+    }
+
     private class AsyncRetrieve extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
