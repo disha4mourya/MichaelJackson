@@ -1,9 +1,11 @@
-package com.imerchantech.michaeljackson;
+package com.imerchantech.michaeljackson.songs_list.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SongActivity extends AppCompatActivity {
+import com.imerchantech.michaeljackson.R;
+
+public class SongsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
