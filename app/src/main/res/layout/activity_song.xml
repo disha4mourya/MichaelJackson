@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".songs_list.view.SongsActivity">
 
-   <ListView
-       android:id="@+id/lvSongs"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".songs_list.view.SongsActivity">
 
-</RelativeLayout>
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rlError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/ivError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_error_outline_gray_48dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivError"
+                android:layout_marginTop="10dp"
+                android:text="@string/something_went_wrong" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lvSongs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 </layout>
