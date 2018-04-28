@@ -64,12 +64,26 @@ public class SongsAdapter extends BaseAdapter {
         }
 
         if (songsEntity.getTrackTimeMillis() != null) {
-            long minutes = TimeUnit.MILLISECONDS.toMinutes(Long.parseLong(songsEntity.getTrackTimeMillis()));
-            tvDuration.setText(String.valueOf(minutes) + " min");
+            String time = millisecondsToTime(Long.parseLong(songsEntity.getTrackTimeMillis()));
+            tvDuration.setText(time);
         }
 
         imageLoader.DisplayImage(songsEntity.getArtworkUrl100(), ivListImage);
 
         return vi;
+    }
+
+    private String millisecondsToTime(long milliseconds) {
+        long minutes = (milliseconds / 1000) / 60;
+        long seconds = (milliseconds / 1000) % 60;
+        String secondsStr = Long.toString(seconds);
+        String secs;
+        if (secondsStr.length() >= 2) {
+            secs = secondsStr.substring(0, 2);
+        } else {
+            secs = "0" + secondsStr;
+        }
+
+        return minutes + ":" + secs;
     }
 }
