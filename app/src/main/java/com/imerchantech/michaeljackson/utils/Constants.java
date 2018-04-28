@@ -8,7 +8,11 @@ public class Constants {
     public static final String SONGDETAILS = "songdetails";
     public static final String TRACKNAME = "trackname";
     public static final String ARTISTNAME = "artistname";
+    public static final String ARTISTPROFILE = "artistprofile";
     public static final String COLLECTIONURL = "collectionurl";
     public static final String ARTISTIMAGE = "artistimage";
+    public static final String TRACKPRICE = "trackprice";
+    public static final String COLLECTIONNAME = "collectionname";
+    public static final String COLLECTIONPRICE = "collectionprice";
 
 }

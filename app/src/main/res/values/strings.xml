@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">MichaelJackson</string>
     <string name="something_went_wrong">Something went wrong!</string>
-    <string name="error">Error</string>
     <string name="right">Right</string>
     <string name="artist_name">Artist Name</string>
     <string name="track_name">Track Name</string>
+    <string name="song_list_is_empty">Song list is empty.</string>
+    <string name="error">Error</string>
+    <string name="collection_name">Collection Name</string>
+    <string name="collection_price">Collection Price</string>
+    <string name="track_price">Track Price</string>
+    <string name="view_collection">View Collection</string>
+    <string name="profile">Profile</string>
+    <string name="view">View</string>
 </resources>

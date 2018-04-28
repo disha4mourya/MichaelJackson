@@ -89,8 +89,10 @@ public class SongsActivity extends AppCompatActivity implements SongsContract.Vi
     }
 
     @Override
-    public void showError(Boolean show) {
+    public void showError(Boolean show,Boolean error) {
         binding.rlError.setVisibility(show ? View.VISIBLE : View.GONE);
+        binding.tvError.setVisibility(error ? View.VISIBLE : View.GONE);
+        binding.tvEmpty.setVisibility(error ? View.GONE : View.VISIBLE);
     }
 
     @Override

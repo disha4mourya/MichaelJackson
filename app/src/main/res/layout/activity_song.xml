@@ -24,14 +24,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_error_outline_gray_48dp" />
+                android:src="@drawable/ic_error_outline_gray_48dp"
+                android:contentDescription="@string/error" />
 
             <TextView
+                android:id="@+id/tvError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivError"
                 android:layout_marginTop="10dp"
                 android:text="@string/something_went_wrong" />
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivError"
+                android:layout_marginTop="10dp"
+                android:text="@string/song_list_is_empty" />
 
         </RelativeLayout>
 

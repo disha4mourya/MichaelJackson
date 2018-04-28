@@ -13,55 +13,203 @@
             android:layout_weight="1">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/ivArtistProfile"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_marginTop="20dp"
-                android:id="@+id/tvArtistName"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/artist_name"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:scrollbars="none">
 
-            <TextView
-                android:id="@+id/tvTrackName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/track_name"
-                android:textColor="@color/colorPrimaryText" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-                <TextView
-                    android:id="@+id/tvDummy"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/artist_name"
+                        android:textColor="@color/colorAccent" />
 
-                <TextView
-                    android:gravity="end"
-                    android:id="@+id/tvPrice"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvArtistName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/artist_name"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnViewProfile"
+                            android:gravity="center|center_vertical"
+                            android:layout_alignParentRight="true"
+                            android:textSize="10sp"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:text="@string/profile"
+                            android:background="@drawable/curve"
+                            android:layout_width="55dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@string/right"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/track_name"
+                        android:textColor="@color/colorAccent" />
+
+                    <TextView
+                        android:id="@+id/tvTrackName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/track_name"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tvDummy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/track_price"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorDivider" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/collection_name"
+                        android:textColor="@color/colorAccent" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCollectionName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/collection_name"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnViewCollection"
+                            android:gravity="center|center_vertical"
+                            android:layout_alignParentRight="true"
+                            android:textSize="10sp"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:text="@string/view"
+                            android:background="@drawable/curve"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@string/right"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tvDummy2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/collection_price"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCollectionPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorDivider" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
 </layout>

@@ -26,20 +26,12 @@ import static com.imerchantech.michaeljackson.utils.Constants.READ_TIMEOUT;
 
 public class SongsModel implements SongsContract.Model {
 
-    List<SongsEntity> songsEntityList;
+    private List<SongsEntity> songsEntityList;
 
     @Override
     public void fetchSongs(LoadCallback<List<SongsEntity>> loadCallback) {
 
-
         new AsyncRetrieve(loadCallback).execute();
-
-        if (songsEntityList != null && songsEntityList.size() > 0)
-            loadCallback.onSuccess(songsEntityList);
-        else {
-            loadCallback.onFailure(new Throwable("Error"));
-        }
-
     }
 
     @Override
@@ -48,12 +40,16 @@ public class SongsModel implements SongsContract.Model {
         return superHeroes != null ? superHeroes.get(position) : null;
     }
 
+    /**
+     * fetch list of songs from server asynchronously
+     */
     private class AsyncRetrieve extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
         LoadCallback loadCallback;
 
-        public AsyncRetrieve(LoadCallback loadCallback) {
+        //constructor to pass callback response
+        AsyncRetrieve(LoadCallback loadCallback) {
             this.loadCallback = loadCallback;
         }
 
@@ -67,7 +63,6 @@ public class SongsModel implements SongsContract.Model {
             try {
                 url = new URL(Constants.SONGS_LIST_URL);
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 return e.toString();
             }
@@ -76,7 +71,6 @@ public class SongsModel implements SongsContract.Model {
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
                 conn.setRequestMethod("GET");
-
                 conn.setDoOutput(true);
 
             } catch (IOException e1) {
@@ -117,8 +111,9 @@ public class SongsModel implements SongsContract.Model {
         @Override
         protected void onPostExecute(String result) {
 
-            songsEntityList = new ArrayList<>();
             if (!result.equals("")) {
+                songsEntityList = new ArrayList<>();
+
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     JSONArray jsonArray = jsonObject.getJSONArray("results");
@@ -144,10 +139,28 @@ public class SongsModel implements SongsContract.Model {
                         if (jsonObject1.has("artistName")) {
                             songsEntity.setArtistName(jsonObject1.getString("artistName"));
                         }
+                        if (jsonObject1.has("collectionPrice")) {
+                            songsEntity.setCollectionPrice(jsonObject1.getString("collectionPrice"));
+                        }
+                        if (jsonObject1.has("trackPrice")) {
+                            songsEntity.setTrackPrice(jsonObject1.getString("trackPrice"));
+                        }
+                        if (jsonObject1.has("releaseDate")) {
+                            songsEntity.setReleaseDate(jsonObject1.getString("releaseDate"));
+                        }
+                        if (jsonObject1.has("trackCensoredName")) {
+                            songsEntity.setTrackCensoredName(jsonObject1.getString("trackCensoredName"));
+                        }
+                        if (jsonObject1.has("collectionViewUrl")) {
+                            songsEntity.setCollectionViewUrl(jsonObject1.getString("collectionViewUrl"));
+                        }
+                        if (jsonObject1.has("artistViewUrl")) {
+                            songsEntity.setArtistViewUrl(jsonObject1.getString("artistViewUrl"));
+                        }
                         songsEntityList.add(songsEntity);
                     }
 
-                    if (songsEntityList.size() > 0)
+                    if (songsEntityList != null)
                         loadCallback.onSuccess(songsEntityList);
                     else
                         loadCallback.onFailure(new Throwable("Error"));
@@ -155,11 +168,7 @@ public class SongsModel implements SongsContract.Model {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //textPHP.setText(result.toString());
-            } else {
-                // you to understand error returned from doInBackground method
             }
-
         }
 
 

@@ -26,20 +26,27 @@ public class SongsPresenter implements SongsContract.Presenter {
 
         view.showProgress(true);
         view.showSongsList(false);
-        view.showError(false);
+        view.showError(false,false);
         model.fetchSongs(new LoadCallback<List<SongsEntity>>() {
             @Override
             public void onSuccess(List<SongsEntity> response) {
-                view.setSongsList(response);
-                view.showSongsList(true);
-                view.showError(false);
-                view.showProgress(false);
+
+                if (response.size()>0) {
+                    view.setSongsList(response);
+                    view.showSongsList(true);
+                    view.showError(false,false);
+                    view.showProgress(false);
+                }else {
+                    view.showSongsList(false);
+                    view.showError(true,false);
+                    view.showProgress(false);
+                }
             }
 
             @Override
             public void onFailure(Throwable throwable) {
                 view.showSongsList(false);
-                view.showError(true);
+                view.showError(true,true);
                 view.showProgress(false);
             }
 

@@ -14,7 +14,7 @@ public interface SongsContract {
 
         void showSongsList(Boolean show);
 
-        void showError(Boolean show);
+        void showError(Boolean show,Boolean error);
 
         void setSongsList(List<SongsEntity> so);
 
