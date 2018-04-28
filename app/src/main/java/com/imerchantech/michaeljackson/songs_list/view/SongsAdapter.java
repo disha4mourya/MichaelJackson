@@ -2,6 +2,9 @@ package com.imerchantech.michaeljackson.songs_list.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,9 @@ import com.imerchantech.michaeljackson.R;
 import com.imerchantech.michaeljackson.songs_list.entity.SongsEntity;
 import com.imerchantech.michaeljackson.utils.image_loading.ImageLoader;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -68,11 +74,43 @@ public class SongsAdapter extends BaseAdapter {
             tvDuration.setText(time);
         }
 
-        imageLoader.DisplayImage(songsEntity.getArtworkUrl100(), ivListImage);
+       // imageLoader.DisplayImage(songsEntity.getArtworkUrl100(), ivListImage);
 
+        ivListImage.setTag(songsEntity.getArtworkUrl100());
+        new DownloadImagesTask().execute(ivListImage);
         return vi;
     }
 
+    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
+
+        ImageView imageView = null;
+
+        @Override
+        protected Bitmap doInBackground(ImageView... imageViews) {
+            this.imageView = imageViews[0];
+            return download_Image((String) imageView.getTag());
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
+        private Bitmap download_Image(String url) {
+
+            Bitmap bmp =null;
+            try{
+                URL ulrn = new URL(url);
+                HttpURLConnection con = (HttpURLConnection)ulrn.openConnection();
+                InputStream is = con.getInputStream();
+                bmp = BitmapFactory.decodeStream(is);
+                if (null != bmp)
+                    return bmp;
+
+            }catch(Exception e){}
+            return bmp;
+        }
+
+    }
     private String millisecondsToTime(long milliseconds) {
         long minutes = (milliseconds / 1000) / 60;
         long seconds = (milliseconds / 1000) % 60;
@@ -83,7 +121,6 @@ public class SongsAdapter extends BaseAdapter {
         } else {
             secs = "0" + secondsStr;
         }
-
         return minutes + ":" + secs;
     }
 }
