@@ -17,7 +17,7 @@ public interface SongsContract {
 
         void showError(Boolean show, Boolean error);
 
-        void showSongDetails(SongsEntity superHero);
+        void showSongDetails(SongsEntity songsEntity);
 
         void notifySongsData();
 
